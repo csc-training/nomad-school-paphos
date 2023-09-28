@@ -21,7 +21,7 @@ SMT is enabled, physical cores have ids 0-127 and "hyperthreads" ids 128-255.
 2. Try to run code in serially and with a basic parallel configuration with the provided
    batch job scripts [job_affinity_serial.sh](job_affinity_serial.sh) and 
    [job_affinity_parallel.sh](job_affinity_parallel.sh). You should see that code runs
-   slower when using all the cores in the node due to dynamic scaling down of CPU clock 
+   slower when using all the cores in the node due to dynamic scaling of CPU clock 
    frequencies.
 
 3. There are also batch job scripts ("bad" and "very bad") that on purpose mess up the
@@ -35,7 +35,7 @@ SMT is enabled, physical cores have ids 0-127 and "hyperthreads" ids 128-255.
    make -B
    ```
 
-   You may play in the batch job scripts with settings for `OMP_NUM_THREADS` and 
-   try setting there also `export OMP_PLACES=cores`
+You may play in the batch job scripts with settings for `OMP_NUM_THREADS` and 
+try setting there also `export OMP_PLACES=cores`.
 
 

@@ -5,6 +5,7 @@ Material for HPC track in NOMAD Center of Excellence [school "Towards exascale s
 ## Hands-on exercises
 
 [Process and thread affinity](affinity)
+[Scalability testing](scalability)
 [Running with GPUs](simple-gpu)
 [Single GPU performance aspects](single-gpu-performance)
 [Multiple GPU performance aspects](multiple-gpu-performance)
