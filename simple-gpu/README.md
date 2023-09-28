@@ -9,7 +9,7 @@ In this exercise you can have a first taste about using GPUs.
    the value in `--gpus-per-node` Slurm option. How does the output look now?
 
    Hint: `rocm-smi` can be useful also with real applications. While a GPU job is 
-   running, one can [starta shell in compute node](https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/interactive/#using-srun-to-check-running-jobs), and by issuing
+   running, one can [start a shell in compute node](https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/interactive/#using-srun-to-check-running-jobs), and by issuing
    the `rocm-smi` command there one can get first hint how the application is 
    utilizing GPUs.
 
