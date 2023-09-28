@@ -33,6 +33,11 @@ mkdir -p $USER
 cd $USER
 ```
 
+Once in your own diredoctory you can also clone this repository:
+```
+git clone https://github.com/csc-training/nomad-school-paphos.git
+```
+
 ## Module system
 
 LUMI has several different programming environments available via the module system.
