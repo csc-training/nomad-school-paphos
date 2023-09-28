@@ -23,11 +23,11 @@ heat equation solver.
    #SBATCH ...
 
    cat << EOF > select_gpu
-#!/bin/bash
+   #!/bin/bash
 
-export ROCR_VISIBLE_DEVICES=\$SLURM_LOCALID
-exec \$*
-EOF
+   export ROCR_VISIBLE_DEVICES=\$SLURM_LOCALID
+   exec \$*
+   EOF
 
    srun ./select_gpu ./heat_offload
    rm -rf ./select_gpu
