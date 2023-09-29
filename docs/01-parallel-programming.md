@@ -27,9 +27,11 @@ lang:   en
 
 - Parallel execution is based on threads or processes (or both) which run at the same time on different CPU cores
 - Processes
+    - Have their own state information and *own memory* address space
     - Interaction is based on exchanging messages between processes
     - MPI (Message passing interface)
 - Threads
+    - Share the memory address space
     - Interaction is based on shared memory, i.e. each thread can access directly other threads data
     - OpenMP, pthreads
 
@@ -303,6 +305,49 @@ program openmp_example
 - Relatively easy to get started but specially efficient and/or real-world
   parallelisation non-trivial
 
+# Process and thread affinity {.section}
+
+# Process and thread affinity
+
+- For obtaining parallel speedup, multiple CPU cores need to be executing 
+  concurrently
+- Process and thread are software constructs which operating systems maps to the 
+  physical CPU cores
+    - Operating system can even move a process/thread from one core to another
+- Running more than single process/thread per core may cause significant performance
+      penalty
+
+# Controlling affinity
+
+
+<div class="column" style="width:65%">
+- MPI and OpenMP must be aware of each other for proper mapping of processes and threads
+  to CPU cores
+- Batch job schedulers may also affect mapping
+- Heavily system dependent
+    - At best, everything works out of the box
+    - At worts, complex settings for MPI and OpenMP
+</div>
+<div class="column" style="width:30%">
+![](img/affinity.svg){.center width=95%}
+</div>
+- See LUMI User Documentation for examples:
+<small>
+    - <https://docs.lumi-supercomputer.eu/runjobs/scheduled-jobs/distribution-binding/>
+</small>
+
+
+# Simultaneous multithreading
+
+- Many Intel and AMD CPUs support simultaneous multithreading (SMT)
+- When SMT is enabled, each physical core is seen as two logical cores by the 
+  operating system (256 cores per node in LUMI)
+- The two logical cores share most of the resources (arithmetic units, caches, memory bus)
+    - Typically, performance benefit up to 30 % at best
+- Well optimized HPC applications do not typically benefit from SMT
+- Many HPC systems (including LUMI) have SMT turned off by default
+    - Trying SMT is easy performance tuning opportunity
+
 # GPU programming {.section}
 
 # Introduction to GPUs
@@ -329,7 +374,6 @@ program openmp_example
 - Large fraction of transistors dedicated to the mathematical operations and less to contorl and caching
 - Individual core is less powerful, but there can be
 thousands of them
-- CPU host is needed for running in the GPU
 </div>
 
 # CPU vs GPU
@@ -340,9 +384,9 @@ thousands of them
 
 # GPU as co-processor
 
-
 <div class=column>
-- Separate memory spaces for CPU and GPU
+- CPU and GPU have physically separate memories
+    - Data needs to be copied via (slow) bus
 - CPU controls the work flow:
   - *offloads* computations to GPU by launching *kernels*
   - allocates and deallocates the memory on GPUs
@@ -431,6 +475,15 @@ end interface
 
 # Summary on GPU programming
 
+- GPUs offer in theory a significant performance boost
+- Programming can be more complicated
+    - Memory copies between CPU and GPU
+    - Large amount of parallelism needed
+- Programming approaches:
+    - OpenACC, OpenMP
+    - HIP/CUDA
+    - SYCL, Kokkos (C++ only)
+
 # Web resources: MPI
 
 - List of MPI functions with detailed descriptions
@@ -456,5 +509,11 @@ end interface
 - OpenMP homepage: <http://openmp.org/>
 - Good online reference: <https://rookiehpc.org/openmp/index.html>
 - Online tutorials: <http://openmp.org/wp/resources/#Tutorials>
+
+# Web resources: GPUs
+
+- NVIDIA Training material: <https://developer.nvidia.com/cuda-education>
+- AMD Training material: <https://rocm.docs.amd.com/en/latest/examples/all.html>
+- HOP (HIP/CUDA portability library): <https://github.com/mlouhivu/hop>
 
 
