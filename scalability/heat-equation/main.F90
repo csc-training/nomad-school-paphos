@@ -24,7 +24,7 @@ program heat_solve
 
   real(kind=dp) :: start_time, stop_time ! Timers
   real(kind=dp) :: t_mpi = 0.0, t_comp = 0.0
-  real(kind=dp) :: start_mpi, start_comp
+  real(kind=dp) :: start_mpi, start_comp, gflops
 
   call mpi_init_thread(MPI_THREAD_SERIALIZED, provided, ierr)
 
@@ -60,13 +60,20 @@ program heat_solve
   average_temp = average(previous)
 
   if (parallelization % rank == 0) then
-     write(*,'(A,F7.3,A)') 'Iteration took ', stop_time - start_time, ' seconds.'
+     gflops = current%nx_full*nsteps*14.0e-9
+     gflops = gflops * current%ny_full
+     gflops = gflops * current%nz_full / (stop_time - start_time)
+     write(*,'(A,F7.3,A,F7.3)') 'Iteration took ', stop_time - start_time, & 
+                                ' seconds. GFLOP/s: ', gflops
      write(*,'(A,F7.3,A)') '   MPI         ', t_mpi, ' s.'
      write(*,'(A,F7.3,A)') '   Compute     ', t_comp, ' s.'
      write(*,'(A,F9.6)') 'Average temperature: ',  average_temp
      if (command_argument_count() == 0) then
          write(*,'(A,F9.6)') 'Reference value with default arguments: ', 63.834223_dp
      end if
+     gflops = current%nx_full*nsteps*14.0e-9
+     gflops = gflops * current%ny_full
+     gflops = gflops * current%nz_full
   end if
 
   call finalize(current, previous)
