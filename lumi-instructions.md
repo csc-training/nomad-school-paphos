@@ -63,12 +63,13 @@ example for running **abinit** with 4 MPI tasks and with 4 OpenMP threads
 #!/bin/bash
 #SBATCH --job-name=abinit_example
 #SBATCH --account=project_465000539
-#SBATCH --partition=debug
+#SBATCH --partition=small
 #SBATCH --time=00:25:00
 #SBATCH --nodes=1   # each node has 128 cores
 #SBATCH --ntasks-per-node=4  # reserve 4 cores per node for MPI
 #SBATCH --cpus-per-task=4    # reserve 4 cores for each MPI task for threading
-#SBATCH --mem-per-cpu=2G     # reserve 2 GiB of memory for each core
+#SBATCH --mem-per-cpu=800M      # reserve 800 MiB of memory per core
+##SBATCH --mem=220G             # reserve 220 GiB of memory per node
 
 odule use /scratch/project_465000539/modules
 module load abinit
@@ -84,4 +85,17 @@ srun abinit tbase1_1.abi > log 2> err
 Save the script *e.g.* as `abinit_job.sh` and submit it with `sbatch job.sh`.
 The output of job will be in file `slurm-xxxxx.out`. You can check the status of your jobs with `squeue --me` and kill possible hanging applications with
 `scancel JOBID`.
+
+On Wed, Fri, Sat, and Sun there is a special reservation for the school, in order to use
+it either add `#SBATCH --reservation=name` (see below for the reservation names) to the batch job script, or submit the job with `--reservation` option as follows:
+```
+# Wed
+sbatch --reservation=nomad_school_20231004 abinit_job.sh
+# Fri
+sbatch --reservation=nomad_school_20231006 abinit_job.sh
+# Sat
+sbatch --reservation=nomad_school_20231007 abinit_job.sh
+# Sun
+sbatch --reservation=nomad_school_20231008 abinit_job.sh
+```
 

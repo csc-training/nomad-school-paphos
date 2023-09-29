@@ -1,0 +1,45 @@
+.DS_Store
+*.o
+*.mod
+*.exe
+\#*
+*~ 
+*.html
+*.pdf
+*.sif
+
+#ignore default binary name
+a.out
+
+#ignore heat solver outputs
+heat_*.png
+heat
+heat_mpi
+
+#ignore default SLURM output files
+slurm-*.out
+
+#ignore specific exercise & solution binaries
+exercises/programming/fortran/hello/hello
+solutions/programming/fortran/hello/hello
+
+exercises/programming/fortran/loops/loops
+solutions/programming/fortran/loops/loops
+
+exercises/programming/fortran/arrays/arrays
+solutions/programming/fortran/arrays/arrays
+
+exercises/programming/fortran/laplacian/laplacian
+solutions/programming/fortran/laplacian/laplacian
+
+exercises/programming/fortran/intrinsics/intrinsics
+solutions/programming/fortran/intrinsics/intrinsics
+
+exercises/programming/fortran/io/io
+solutions/programming/fortran/io/io
+
+#ignore R and RStudio related files
+.Rproj.user
+*.Rproj
+.RData
+.Rhistory
