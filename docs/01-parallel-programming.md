@@ -14,10 +14,10 @@ lang:   en
     - Often computationally intensive parts are still written in C/C++
       or Fortran
 - Low level GPU programming with CUDA or HIP
-- For some applications there are high-level frameworks with
-  interfaces to multiple languages
-    - SYCL, Kokkos, PETSc, Trilinos
-    - TensorFlow, PyTorch for deep learning
+- Performance portability frameworks
+    - SYCL, Kokkos
+- High-level frameworks for special tasks
+    - PETSc, Trilinos, TensorFlow, PyTorch
 
 # Parallel programming models
 
@@ -354,6 +354,8 @@ program openmp_example
 
 - GPUs have become ubiquitous in high-performance computing
 - Better FLOPS / W than CPUs
+    - LUMI CPU nodes: ~9 GLOPS / W
+    - LUMI GPU nodes: ~85 GLOPS / W
 - Single GPU provides high performance
     - Whole LUMI GPU partition = 20 000 GPUs
     - Whole LUMI CPU partition = 200 000 CPU cores
@@ -418,6 +420,16 @@ thousands of them
     - Rely on implicit data movements
     - Compiler support incomplete
 
+# OpenMP offloading
+
+- OpenMP programming for GPUs is similar to normal OpenMP threading
+- Directives specify which parts of the program are executed on GPUs and how they can
+  be parallelized
+- Additional directives and clauses for controlling data movement between CPU and GPU
+- In principle offload target can be also multicore CPU
+    - Same program can be run both on GPUs and CPUs
+- Relatively simple programming, compiler and runtime take care of the details (in theory)
+
 # Look and feel for OpenMP offloading
 
 ```fortran
@@ -432,6 +444,14 @@ program offload_example
 !$omp end teams distribute parallel do
 !$omp end target
 ```
+
+# CUDA/HIP programming
+
+- CUDA/HIP add few additional constructs to standard C/C++
+- Programming model: single instructions multiple threads (SIMT)
+    - Programmer writes kernels that all the threads execute
+- Threads are combined into groups (warps / wavefronts) which execute in lockstep
+    - If statements in the kernels may be vary bad for performance
 
 # Look and feel for CUDA/HIP
 
@@ -449,7 +469,8 @@ void axpy(int n, float a, float *x, float *y)
 {
     dim3 blocks(32);
     dim3 threads(256);
-    axpy_kernel<<<blocks, threads>>>(n, a, x, y);
+    
+axpy_kernel<<<blocks, threads>>>(n, a, x, y);
 }
 ```
 
@@ -472,6 +493,53 @@ interface
   end subroutine
 end interface
 ```
+
+# Best practices for GPU programming (personal thoughts)
+
+- Landscape for GPU programming is far from clear
+- CUDA is in many ways a good approach
+    - However, vendor lock in to NVIDIA
+    - Automatic tools for "hipifying" CUDA core work quite well
+- HIP supports in principle both AMD and NVIDIA devices
+    - HIP environment is not necessarily available in NVIDIA based systems
+    - No "cudafy" tool for going back to CUDA
+- Header only portability approach
+    - Write generic CUDA/HIP-like GPU code, the backend is chosen at compile time
+    
+# Best practices for GPU programming (personal thoughts)
+
+- Directive based approaches promise good portability and performance
+    - In principle, a key subroutines can be implemented in CUDA/HIP for better performance
+    - Fortran is supported in the same level as C/C++
+    - In practice, currently compilers have lot of room for improvement
+- Kokkos and SYCL look promising
+    - SYCL still largely driven by Intel
+    - Require typical major rewriting of the program
+    - Support only C++
+
+# Best practices for porting to AMD GPUs (personal thoughts)
+
+<div class=column>
+
+- Existing CUDA code
+    - Use "hipify" or try header-only porting library
+- Existing OpenACC/OpenMP offload code
+    - Cross your fingers and hope for the best
+
+</div>
+<div class=column>
+
+- CPU-only C/C++ code
+   - Write generic GPU code and use header-only porting library 
+   - Try SYCL or Kokkos
+- CPU-only Fortran code
+   - Write generic GPU code with C together with header-only library and use C-bindings for interfacing to Fortran
+   - Try OpenMP offloading
+
+</div>
+
+
+
 
 # Summary on GPU programming
 
