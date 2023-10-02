@@ -6,6 +6,8 @@ Material for HPC track in NOMAD Center of Excellence [school "Towards exascale s
 
 ## Hands-on exercises
 
+- [General LUMI instructions](lumi-instructions.md)
+ 
 - [Process and thread affinity](affinity)
 - [Scalability testing](scalability)
 - [Running with GPUs](simple-gpu)
