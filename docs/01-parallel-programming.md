@@ -470,7 +470,7 @@ void axpy(int n, float a, float *x, float *y)
     dim3 blocks(32);
     dim3 threads(256);
     
-axpy_kernel<<<blocks, threads>>>(n, a, x, y);
+    axpy_kernel<<<blocks, threads>>>(n, a, x, y);
 }
 ```
 
