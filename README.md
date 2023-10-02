@@ -8,10 +8,19 @@ Material for HPC track in NOMAD Center of Excellence [school "Towards exascale s
 
 - [General LUMI instructions](lumi-instructions.md)
  
-- [Process and thread affinity](affinity)
-- [Scalability testing](scalability)
+### Wed: Exercises by Erwin Laure/Markus Rampp
+
+- [MPCDF Repository](https://gitlab.mpcdf.mpg.de/mjr/nomad-summer-2023)
+
+### Sat: Exercises by Jussi Enkovaara
+ 
 - [Running with GPUs](simple-gpu)
 - [Single GPU performance aspects](single-gpu-performance)
 - [Multiple GPU performance aspects](multiple-gpu-performance)
 
+Following topics are already covered in large extent by Erwin/Markus but feel free
+to carry them out for further insight 
+
+- [Process and thread affinity](affinity)
+- [Scalability testing](scalability)
 
