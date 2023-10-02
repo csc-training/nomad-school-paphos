@@ -362,6 +362,18 @@ program openmp_example
     - GPU partition has ~50 times more performance
 - Currently, two players in the market: NVIDIA and AMD
 
+# When to use GPUs ?
+
+- Even though theoretical peak performance of GPUs is very high, many applications
+  can reach only small proportion of it
+- Programming effort might be considerable if application does not yet support GPUs
+    - Still, GPUs are here to stay
+- One should always measure how much GPUs speed up the time to solution
+    - For fair comparison one should measure full GPU nodes vs. full CPU nodes
+    - If application supports only single GPU, GPU vs. single multicore CPU is ok
+- In LUMI, GPU node is more energy efficient when speedup is 4-5
+
+
 # CPU vs GPU
 <div class=column>
 **CPU**
@@ -537,9 +549,6 @@ end interface
    - Try OpenMP offloading
 
 </div>
-
-
-
 
 # Summary on GPU programming
 
