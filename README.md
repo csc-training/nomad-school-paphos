@@ -18,6 +18,8 @@ Material for HPC track in NOMAD Center of Excellence [school "Towards exascale s
 - [Single GPU performance aspects](single-gpu-performance)
 - [Multiple GPU performance aspects](multiple-gpu-performance)
 
+### Bonus exercises
+
 Following topics are already covered in large extent by Erwin/Markus but feel free
 to carry them out for further insight 
 
