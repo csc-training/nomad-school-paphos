@@ -76,7 +76,7 @@ example for running **abinit** with 4 MPI tasks and with 4 OpenMP threads
 #SBATCH --mem-per-cpu=800M      # reserve 800 MiB of memory per core
 ##SBATCH --mem=220G             # reserve 220 GiB of memory per node
 
-odule use /scratch/project_465000539/modules
+module use /scratch/project_465000539/modules
 module load abinit
 
 # OpenMp Environment
