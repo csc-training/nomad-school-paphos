@@ -33,11 +33,6 @@ mkdir -p $USER
 cd $USER
 ```
 
-One can see the different disk areas a user has access with the command
-```
-lumi-workspaces
-```
-
 Once in your own diredoctory you can also clone this repository:
 ```
 git clone https://github.com/csc-training/nomad-school-paphos.git
