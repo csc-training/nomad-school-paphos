@@ -17,6 +17,7 @@ Material for HPC track in NOMAD Center of Excellence [school "Towards exascale s
 - [Running with GPUs](simple-gpu)
 - [Single GPU performance aspects](single-gpu-performance)
 - [Multiple GPU performance aspects](multiple-gpu-performance)
+- [GPU profiling with rocprof](gpu-profiling)
 
 ### Bonus exercises
 
