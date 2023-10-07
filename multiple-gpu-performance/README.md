@@ -28,12 +28,13 @@ heat equation solver.
    export ROCR_VISIBLE_DEVICES=\$SLURM_LOCALID
    exec \$*
    EOF
+   chmod u+x select_gpu
 
    srun ./select_gpu ./heat_offload
    rm -rf ./select_gpu
    ```
 
-3. Enable multi-GPU awareness in the program by uncommenting in the [Makefile](heat-equation/Makefile) the `SETDEVICE` variable. Can you still use the `select_gpu` wrapper ?
+3. Enable multi-GPU awareness in the program by uncommenting in the [Makefile](heat-equation/Makefile) the `SETDEVICE` variable. Now, **do not** use the `select_gpu` wrapper (it does not affect performance, however, number of GPUs reported by the application won't be correct)
 
 4. In LUMI, it is possible to do MPI communications directly from the GPUs. However,
    the basic version of program performs all the MPI communication from CPUs which can

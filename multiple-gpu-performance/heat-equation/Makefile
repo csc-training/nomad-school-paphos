@@ -1,13 +1,13 @@
 FC=ftn
 GPU_MPI=
 # GPU_MPI=-DGPU_MPI
-SET_DEVICE=
+#SET_DEVICE=
 # SET_DEVICE=-DSETDEVICE
 
-FCFLAGS=-O3 -fopenmp $(GPU_MPI) $(SETDEVICE)
+FCFLAGS=-O3 -fopenmp $(GPU_MPI) $(SET_DEVICE)
 LDFLAGS=-fopenmp 
 
-EXE=heat_openmp
+EXE=heat_offload
 OBJS=main.o heat_mod.o core.o setup.o utilities.o
 
 all: $(EXE)
