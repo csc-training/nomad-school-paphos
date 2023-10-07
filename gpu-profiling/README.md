@@ -31,7 +31,7 @@ different MPI processes is written to different files.
    the flat profile of process 0, and "results_0.json" the trace for process 0.
    Traces can be investigated with web browser:
      - Download the trace file(s) (e.g. "results_0.json") to your laptop
-     - Go with a browser (chrome recommended, firefox should also work) to [https://ui.perfetto.dev/]https://ui.perfetto.dev/()
+     - Go with a browser (chrome recommended, firefox should also work) to https://ui.perfetto.dev/
      - Open the trace file.
    You see the list of perfetto controls by typing `?`
 
