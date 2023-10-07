@@ -23,7 +23,7 @@ different MPI processes is written to different files.
    EOF
 
    chmod +x ./rocprof_wrapper.sh
-   srun ./rocprof_wrapper.sh ./heat_
+   srun ./rocprof_wrapper.sh ./heat_offload
    rm -f ./rocprof_wrapper.sh
    ```
 
