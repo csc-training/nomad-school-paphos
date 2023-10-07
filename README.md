@@ -18,7 +18,7 @@ Material for HPC track in NOMAD Center of Excellence [school "Towards exascale s
 - [Single GPU performance aspects](single-gpu-performance)
 - [Multiple GPU performance aspects](multiple-gpu-performance)
 - [GPU profiling with rocprof](gpu-profiling)
-- [Matrix multiplication with GPUs](gpu_matmul)
+- [Matrix multiplication with GPUs](gpu-matmul)
 
 ### Bonus exercises
 
